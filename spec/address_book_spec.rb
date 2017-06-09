@@ -86,36 +86,48 @@ RSpec.describe AddressBook do
        entry_five = book.entries[4]
        check_entry(entry_five, "Sussie", "555-555-2036", "sussie@blocmail.com")
      end
+  end
 
-     describe "import from entries_2.csv" do
-        it "imports correct number from entries" do
-          book.import_from_csv("entries_2.csv")
-          expect(book.entries.size).to eq 3
-        end
-     end
-
-     it "imports the 1st entry" do
+  describe "import from entries_2.csv" do
+     it "imports correct number from entries" do
        book.import_from_csv("entries_2.csv")
-       entry_one = book.entries[0]
-       check_entry(entry_one, "Bill", "555-555-4854", "bill@blocmail.com")
+       expect(book.entries.size).to eq 3
      end
 
-     it "imports the 2nd entry" do
-       book.import_from_csv("entries_2.csv")
-       entry_two = book.entries[1]
-       check_entry(entry_two, "Bob", "555-555-5415", "bob@blocmail.com")
-     end
 
-     it "imports the 3rd entry" do
-       book.import_from_csv("entries_2.csv")
-       entry_three = book.entries[2]
-       check_entry(entry_three, "Joe", "555-555-3660", "joe@blocmail.com")
-     end
+    it "imports the 1st entry" do
+      book.import_from_csv("entries_2.csv")
+      entry_one = book.entries[0]
+      check_entry(entry_one, "Bill", "555-555-4854", "bill@blocmail.com")
+    end
 
+    it "imports the 2nd entry" do
+      book.import_from_csv("entries_2.csv")
+      entry_two = book.entries[1]
+      check_entry(entry_two, "Bob", "555-555-5415", "bob@blocmail.com")
+    end
+
+    it "imports the 3rd entry" do
+      book.import_from_csv("entries_2.csv")
+      entry_three = book.entries[2]
+      check_entry(entry_three, "Joe", "555-555-3660", "joe@blocmail.com")
+    end
   end
 end
 
+
+
 =begin
+
+
+  describe "#binary_search" do
+    it "searches AddressBook for a non-existent entry" do
+      book.import_from_csv("entries.csv")
+      entry = book.binary_search("Dan")
+      expect(entry).to be_nil
+    end
+  end
+
 
   describe "#remove_entry" do
     it "remove one entry from the address book" do
@@ -133,5 +145,4 @@ end
       expect(book.entries.first.phone_number).to eq('408-666-8888')
     end
   end
-
 =end
