@@ -138,6 +138,13 @@ RSpec.describe AddressBook do
        expect(entry).to be_nil
      end
    end
+
+   describe "#demolish" do
+     it "Should delete all entries" do
+       book.demolish
+       expect(book.entries.size).to eq 0
+     end
+   end
 end
 
 =begin
